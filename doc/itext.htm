@@ -1,0 +1,81 @@
+
+<p>
+<table>
+<tr>
+<td>
+<a href=./index.htm>Doc Home</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+<a href=./installwindows.htm>Windows Install</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./quicktutorial.htm>Quick Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./tutorial.htm>Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tr>
+<tr>
+<td>
+<a href=./database.htm>Database</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./itext.htm>iText Reports</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./javadoc/overview-summary.html>Java Api</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./license.htm>License</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+
+</table>
+</p>
+
+<h1>
+iText Reporting Tool
+</h1>
+
+<p>
+Last modified on Tuesday July 5, 2005
+</p>
+
+<p>
+Before trying to dive into understanding iText
+you should go to the 
+<a href="http://www.lowagie.com/iText">iText</a>
+web site and review
+the documention provided with the distribution.  I would
+even recommend downloading a copy of iText
+and running through some of the demos.
+<p>
+For those of you who are Java programmers and want to
+start working with iText the most important
+document to read on the iText web site is the <b>Tutorial.</b>
+This outlines in much detail the different objects and their
+attributes for each type of element found in a report or document. 
+<p>
+All of the main iText reports for the Zrato system are
+found in the packages starting with com.arcadian.itext.*.
+<p>
+There are 3 classes of reports generated in Zrato.
+<ul>
+<li>Algorithmic reports namely Moving Average</li>
+<li>Sector / Industry Reports Based on Market Capitalizations</li>
+<li>Future (EPS) Earnings Per Share Reports</li>
+</ul>
+<p>
+The report names correlate with the following types of reports
+<ul>
+<li>EpsTechg00.pdf -- Earnings Per Share Report for the Technology Sector</li>
+<li>Techg00.pdf -- Technology Sector Report</li>
+<li>Matechg00.pdf -- Moving Average Report for the Technology Sector</li>
+</ul>
+<p>
+To generate out all of the reports at once use <b>ant ga</b>.
+<p>
+This is a good starting point for understanding what iText can
+do for you in concert with a Relational Database.

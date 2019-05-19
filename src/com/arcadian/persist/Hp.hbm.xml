@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.arcadian.persist">
+
+	<class name="Hp">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="date" type="date"/>
+		<property name="symbol"/>
+		<property name="open"/>
+		<property name="high"/>
+		<property name="low"/>
+		<property name="close"/>
+		<property name="adjclose"/>
+		<property name="volume"/>
+	</class>
+		
+</hibernate-mapping>

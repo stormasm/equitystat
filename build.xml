@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<!-- ============================================================== -->
+<!--         Zrato Finance (etsag) Build file                                                                              -->
+<!-- ============================================================== -->
+
+<project name="etsag" default="etsagjar" basedir=".">
+
+    <!-- ============================================================== -->
+    <!--     Environment Variables                                      -->
+    <!-- ============================================================== -->
+
+    <property environment="env"/>
+    <property name="ant.home" value="${env.ANT_HOME}"/>
+    <property name="etsdata.home" value="${env.ETSDATA_HOME}"/>
+    <property name="hib.home" value="${env.HIB_HOME}"/>
+
+    <!-- ============================================================== -->
+    <!--           Main Properties                                      -->
+    <!-- ============================================================== -->
+
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="etc.dir" value="${basedir}/etc"/>
+    <property name="dist.dir" value="${basedir}/dist"/>    
+    <property name="javadoc.dir" value="${basedir}/doc/javadoc"/>    
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="build.classes.dir" value="${build.dir}/classes"/>
+    <property name="hiblib.dir" value="${hib.home}/lib"/>
+    
+    <!-- ============================================================== -->
+    <!--           Hibernate Configuration                                                                                        -->
+    <!-- ============================================================== -->
+    
+    <patternset id="maptest.files">
+	<include name="org/hibernate/test/auction/*.xml"/>
+    </patternset>
+    
+    <patternset id="mapersist.files">
+	<include name="com/arcadian/persist/*.xml"/>
+    </patternset>
+    
+    <!-- ============================================================== -->
+    <!--           Build Classpath                                      -->
+    <!-- ============================================================== -->
+
+<path id="classpath">
+        <fileset dir="${ant.home}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+	<!-- hibernate3.jar -->
+        <fileset dir="${hib.home}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${hiblib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+	<pathelement location="${build.classes.dir}"/>
+  </path>
+
+  <property name="build.classpath" refid="classpath"/>
+  
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare" >
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+    <copy todir="${build.classes.dir}">
+    	<fileset dir="${src.dir}">
+		<patternset refid="mapersist.files"/>
+	</fileset>
+   </copy>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the source code                                            -->
+  <!-- =================================================================== -->
+  <target name="compile" depends="prepare">
+    <javac srcdir="${src.dir}"
+           destdir="${build.classes.dir}"
+           debug="on"
+           deprecation="on"
+           optimize="off"
+           includes="**">
+            <classpath refid="classpath"/>
+    </javac>
+  </target>
+
+  <target name="etsagjar" depends="compile">
+    <jar jarfile="build/etsag.jar">
+      <fileset dir="${build.classes.dir}">
+      </fileset>
+	<fileset dir="${etc.dir}/">
+		<include name="**/*.properties"/>
+	</fileset>
+     </jar>
+     <copy file="build/etsag.jar" todir="${dist.dir}"/>
+     <copy file="build/etsag.jar" todir="${lib.dir}"/>
+  </target>
+
+   <!-- =================================================================== -->
+   <!-- Generates the Java Doc                                              -->
+   <!-- =================================================================== -->
+
+	<target name="javadoc" depends="compile">
+		<javadoc sourcepath="${src.dir}" 
+		         destdir="${javadoc.dir}"
+			 packagenames="com.arcadian.*"
+			 package="true"
+			 source="1.4"
+			 classpathref="classpath"
+			 windowtitle="Zrato API Documentation"/>
+	</target>
+
+   <!-- =================================================================== -->
+   <!--              Generate the Ma Table in the Database                                                                     -->
+   <!-- =================================================================== -->
+
+   	<target name="ma" depends="etsagjar">
+	
+       	        <java classname="com.arcadian.finance.tech.MovingAverage" fork="yes" dir=".">
+			<classpath refid="classpath"/>
+			<arg value="50"/>  
+		</java>
+		
+		<java classname="com.arcadian.finance.tech.MovingAverage" fork="yes" dir=".">
+			<classpath refid="classpath"/>
+			<arg value="200"/>  
+		</java>
+	</target>
+      
+   	
+   <!-- =================================================================== -->
+   <!--              Report Generation Targets for Industry Sector's                                                        -->
+   <!-- =================================================================== -->
+
+   	<target name="gs" depends="etsagjar">
+		<java classname="com.arcadian.itext.sector.GenSector" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+	
+	<target name="ge" depends="etsagjar">
+		<java classname="com.arcadian.itext.sector.GenEps" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+	<target name="gm" depends="etsagjar">
+		<java classname="com.arcadian.itext.sector.GenMa" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+	
+	<target name="ga" depends="etsagjar">
+		<java classname="com.arcadian.itext.sector.GenSector" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+		<java classname="com.arcadian.itext.sector.GenEps" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+		<java classname="com.arcadian.itext.sector.GenMa" fork="true">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+	
+   <!-- =================================================================== -->
+   <!--   Install Check,    This will test to see if the Zrato system is properly installed                    -->
+   <!-- =================================================================== -->
+
+  <target name="ic" depends="etsagjar">
+    <java classname="com.arcadian.sql.CriteriaKs" fork="yes" dir=".">
+      <classpath refid="classpath"/>
+      <arg value="NotUsed"/>  
+    </java>
+  </target>
+  
+  <!-- =================================================================== -->
+  <!-- Cleans up generated stuff                                           -->
+  <!-- =================================================================== -->
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+    <delete dir="${javadoc.dir}"/>
+    <delete file="build.xml~"/>
+     <delete>
+    	<fileset dir="." includes="**/*.pdf"/>
+    </delete>
+  </target>
+
+</project>

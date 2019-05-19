@@ -1,0 +1,28 @@
+package com.arcadian.log;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.helpers.LogLog;
+
+public class EtsLoggerTest01 {
+
+  static public void main(String[] args) {
+    
+    try {
+	    
+      EtsLogger log1 = (EtsLogger) EtsLogger.getInstance("a", Level.DEBUG);    
+      log1.info("Hello");
+      
+      EtsLogger log2 = (EtsLogger) EtsLogger.getInstance("b", Level.INFO);    
+      log2.debug("Goodbye");
+      
+      EtsLogger log3 = (EtsLogger) EtsLogger.getInstance("c", Level.DEBUG);    
+      log3.debug("Right");
+      
+      EtsLogger log4 = (EtsLogger) EtsLogger.getInstance("d", Level.DEBUG,"test2.txt");    
+      log4.debug("Wrong");
+      
+    } catch(ClassCastException e) {
+      LogLog.error("Did you forget to set the factory in the config file?", e);
+    }
+  }
+}

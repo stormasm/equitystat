@@ -1,0 +1,57 @@
+package com.arcadian.ant;
+
+import org.apache.tools.ant.Project;
+import org.apache.tools.ant.taskdefs.Copy;
+
+import java.io.File;
+
+/**
+Use the ant copy facility in your java code.
+*/
+
+public class AntCopy
+{
+
+	protected static LocalCopy copy_;
+	
+	public static void localCopy(String src, String dst) {
+		doLocalCopy(src,dst);
+	}
+	
+	protected synchronized static LocalCopy doLocalCopy(String src, String dst) {
+		if ( copy_ == null) {
+			copy_ = new LocalCopy();
+			copy_.init(src,dst);
+		}
+		
+		return copy_;
+	}
+
+    /**
+     * For standalone testing
+     */
+
+    public static void main(String[] args)
+    {
+	String src = File.separator + "tmpantx" + File.separator + "hi.txt";
+	String dst = File.separator + "tmpanty";
+        localCopy(src,dst);
+	System.out.println("Successfully copied source to destination");
+    }
+
+private static class LocalCopy extends Copy {
+	
+	public LocalCopy() {
+		Project project = new Project();
+		project.init();
+		setProject(project);
+	}
+	
+	public void init(String src, String dst) {
+		setFile(new File(src));
+		setTodir(new File(dst));
+		execute();
+	}
+};
+
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.arcadian.persist">
+
+	<class name="IndustryKs">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="symbol"/>
+		<property name="pricechange"/>
+		<property name="marketcap"/>
+		<property name="trailingpe"/>
+		<property name="roe"/>
+		<property name="divyield"/>
+		<property name="debtequity"/>
+		<property name="pricebook"/>
+		<property name="qtrrevgrowth"/>
+		<property name="qtrepsgrowth"/>
+	</class>
+		
+</hibernate-mapping>

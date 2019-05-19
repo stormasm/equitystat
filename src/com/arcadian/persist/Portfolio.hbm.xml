@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.arcadian.persist">
+
+	<class name="Portfolio">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="username"/>
+		<property name="portfolioname"/>
+		
+		<list name="symbols">
+		    <key column="portfolioid"/>
+		    <list-index column="pdex"/>
+		    <element column="symbol" type="java.lang.String"/>
+		</list>
+		
+	</class>
+		
+</hibernate-mapping>

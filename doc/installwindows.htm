@@ -1,0 +1,248 @@
+
+
+<p>
+<table>
+<tr>
+<td>
+<a href=./index.htm>Doc Home</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+<a href=./installwindows.htm>Windows Install</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./quicktutorial.htm>Quick Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./tutorial.htm>Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tr>
+<tr>
+<td>
+<a href=./database.htm>Database</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./itext.htm>iText Reports</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./javadoc/overview-summary.html>Java Api</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./license.htm>License</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+
+</table>
+</p>
+
+
+<h1>
+Zrato Installation Doc for Windows
+</h1>
+
+<p>
+Last modified on Friday June 24, 2005
+</p>
+
+<h3>
+Installation Step One, Download and Install Packages from the internet
+</h3>
+<p>
+<ul>
+
+<li>
+Download and install Java 2 Platform Standard Edition 5.0 from
+<a href="http://java.sun.com/j2se/1.5.0/download.jsp">Sun Microsystems</a>
+</li>
+
+<li>
+Download and install Apache Ant 1.6.5 from
+<a href="http://ant.apache.org">Apache</a>
+</li>
+
+<li>
+Download and install the MySql Database Server 4.1 from
+<a href="http://dev.mysql.com/downloads/mysql/4.1.html">MySql</a>
+</li>
+
+<li>
+Download and install Hibernate from
+<a href="http://www.hibernate.org">Hibernate</a>
+</li>
+
+</ul>
+</p>
+
+<h3>
+Installation Step Two, Install the Zrato Database.
+</h3>
+<p>
+<ul>
+<li>
+Shut down your MySql database server
+</li>
+<li>
+Unzip the zrato database and place it in the <b>data</b> directory wherever
+MySql is installed. 
+</li>
+<li>
+Also, in that directory you will find a directory
+called <b>mysql</b> and <b>test</b>. 
+</li>
+<li>
+With MySql each directory is
+physically a database, so by adding zrato you are installing another
+new database.
+</li>
+<li>
+The zrato
+database is a directory of files with names in it like
+<b>hp.*</b>, and <b>ks.*</b>, etc...
+</li>
+<li>
+Each set of three files is a table in the database.
+</li>
+<li>
+Start up your MySql database server.  The zrato database should
+now be loaded.
+</li>
+<li>
+You may want to bring up a MySql GUI to review the database
+tables in the Zrato database.
+</li>
+</ul>
+</p>
+
+<h3>
+Installation Step Three, Create an environment variable.
+</h3>
+<p>
+<ul>
+<li>
+Create an environment variable called <b>ETSDATA_HOME=c:\etsdata</b>
+</li>
+<li>
+If you don't know how to do this here are the instructions.
+</li>
+<li>
+Bring up the <b>control panel</b>
+</li>
+<li>
+Double click on <b>System</b>
+</li>
+<li>
+A System properties window should now appear.
+</li>
+<li>
+Double click on the Advanced Tab
+</li>
+<li>
+At the bottom is a button called Environment Variables, click on that.
+</li>
+<li>
+Under the User Variables click on <b>New</b>
+</li>
+<li>
+For Variable Name put in <b>ETSDATA_HOME</b>
+</li>
+<li>
+For Variable Value put in <b>c:\etsdata</b>
+</li>
+<li>
+Click on OK several times to instantiate.
+</li>
+<li>
+In a new command window at the c:\ prompt type <b>set</b>
+</li>
+<li>
+And make sure the above environment variable has been set
+</li>
+</ul>
+</p>
+
+<h3>
+Installation Step 4A, Create the 
+<a href="http://ant.apache.org">Ant</a>
+environment variable.
+</h3>
+<p>
+<ul>
+<li>
+If Ant was already installed on your machine, you may have
+this environment variable already set.
+</li>
+<li>
+If not, then set it using the same procedure as above.
+</li>
+<li>
+Call the environment variable <b>ANT_HOME</b>
+</li>
+<li>
+Set the environment variable to the location where ANT is installed.
+</li>
+</ul>
+
+
+<h3>
+Installation Step 4B, Create the 
+<a href="http://www.hibernate.org">Hibernate</a>
+environment variable.
+</h3>
+<p>
+<ul>
+<li>
+If Hibernate was already installed on your machine, you may have
+this environment variable already set.
+</li>
+<li>
+If not, then set it using the same procedure as above.
+</li>
+<li>
+Call the environment variable <b>HIB_HOME</b>
+</li>
+<li>
+Set the environment variable to the location where Hibernate is installed.
+</li>
+</ul>
+
+<h3>
+Installation Step Five, Install Zrato
+</h3>
+<p>
+<ul>
+<li>
+Unzip the installation and place under <b>c:\etsag</b>
+</li>
+</ul>
+</p>
+
+<h3>
+Installation Step Six, Test to see if configured properly
+</h3>
+<p>
+This will test to make sure that these 
+software packages are all installed correctly.
+<ul>
+<li>Ant
+<li>Java
+<li>MySql
+<li>Hibernate
+<li>Zrato
+</ul>
+<p>
+
+
+Run the following test in <b>c:\etsag</b>
+to make sure your Zrato system is correctly installed
+<p>
+<ul>
+<li>
+ant ic
+</li>
+</ul>
+
+
+
+
+</p>

@@ -1,0 +1,655 @@
+
+
+<p>
+<table>
+<tr>
+<td>
+<a href=./index.htm>Doc Home</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+<a href=./installwindows.htm>Windows Install</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./quicktutorial.htm>Quick Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./tutorial.htm>Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tr>
+<tr>
+<td>
+<a href=./database.htm>Database</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./itext.htm>iText Reports</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./javadoc/overview-summary.html>Java Api</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./license.htm>License</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+
+</table>
+</p>
+
+<h1>
+Zrato Database Schema
+</h1>
+
+<p>
+Last modified on Friday Jun 24, 2005
+</p>
+
+<h3>
+The Database Tables
+</h3>
+<p>
+The Zrato database is at the core of the Zrato System.  Understanding
+the database tables and their respective schemas will give you the
+insight you need to further develop interesting algorithms and reports
+surrounding this novel, open source financial software.
+</p>
+
+<p>
+Currently the database schemas are arranged into five major
+categories.  Over time, this is most likely to change and be augmented
+but for now this is the overall design.  The five categories are.
+<ul>
+<li>
+Symbol Table
+</li>
+<li>
+Portfolio Tables
+</li>
+<li>
+Reporting Tables
+</li>
+<li>
+Industry Tables
+</li>
+<li>
+Core Tables
+</li>
+</ul>
+</p>
+
+
+<font color="#cc3366">
+<h2>
+The Symbol Table
+</h2>
+</font>
+
+There is one symbol table
+which contains the company name and the company symbol.
+<p>
+<table border="1">
+
+<tr>
+<th>symbolname</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>name</td>
+</table>
+
+
+<font color="#cc3366">
+<h2>
+Portfolio Tables
+</h2>
+</font>
+
+<p>
+There are two tables dealing with portfolios.
+<ul>
+<li>
+portfolio
+</li>
+<li>
+symbols
+</li>
+</ul>
+<p>
+
+<table border="1">
+
+<tr>
+<th>portfolio</th>
+</tr>
+
+<tr>
+<td>username</td>
+<tr>
+<td>portfolioname</td>
+
+</table>
+<p>
+The <b>symbols</b> table is purely an indexing table used by
+the portfolio table and should never be touched by the end
+user.  The symbols table is purely manipulated by the Java
+code interacting with the portfolios table.
+<p>
+
+<table border="1">
+
+<tr>
+<th>symbols</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>pdex</td>
+
+</table>
+<p>
+
+
+<font color="#cc3366">
+<h2>
+Reporting Tables
+</h2>
+</font>
+
+
+<p>
+There are two reporting tables for now, but this number will grow.
+
+<ul>
+<li>
+Eps, Earnings Per Share
+</li>
+<li>
+Ma, Moving Average
+</li>
+</ul>
+
+<table border="1">
+
+<tr>
+<th>Eps</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>trailing_pe</td>
+<tr>
+<td>eps</td>
+<tr>
+<td>price</td>
+<tr>
+<td>forward_pe</td>
+<tr>
+<td>future_eps</td>
+<tr>
+<td>future_price</td>
+<tr>
+<td>percent_increase</td>
+
+</table>
+
+<p>
+This is the Moving Average Table which reads data
+from the Hp Table to calculate the Moving Averages.
+</p>
+
+<table border="1">
+
+<tr>
+<th>Ma</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>date</td>
+<tr>
+<td>days</td>
+<tr>
+<td>adjclose</td>
+<tr>
+<td>ma</td>
+<tr>
+<td>direction</td>
+<tr>
+<td>future_price</td>
+<tr>
+<td>percent_increase</td>
+
+</table>
+
+<font color="#cc3366">
+<h2>
+The Industry Sector Tables
+</h2>
+</font>
+
+<p>
+There are three tables dealing with Industry Sectors and
+Industry Groups within those sectors.
+
+<ul>
+<li>
+Industry
+</li>
+<li>
+IndustryKs
+</li>
+<li>
+Sector
+</li>
+</ul>
+
+<p>
+There are 212 industry names stored in the <b>sector</b> database
+table.  Associated with these 212 industry names are 9 sectors.
+To see a complete list of
+industries stored in a particular sector look at the <b>indname</b>
+column in the sector table.  There is also a unique number that
+corresponds to the industry name that is saved in the column
+<b>indcode</b>. 
+<p>
+So, if you want to select a set of companies from the industry table,
+based on a particular industry, you can either use the <b>indname</b> or
+the <b>indcode</b>.
+
+
+<h5>
+Sector
+</h5>
+
+<table border="1">
+
+<tr>
+<th>sector</th>
+</tr>
+
+<tr>
+<td>sector</td>
+<tr>
+<td>indname</td>
+<tr>
+<td>indcode</td>
+</table>
+
+<h5>
+Industry
+</h5>
+
+<table border="1">
+
+<tr>
+<th>industry</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>name</td>
+<tr>
+<td>sector</td>
+<tr>
+<td>indname</td>
+<tr>
+<td>indcode</td>
+</table>
+
+<h5>
+IndustryKs
+</h5>
+
+<table border="1">
+
+<tr>
+<th>industryks</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>pricechange</td>
+<tr>
+<td>marketcap</td>
+<tr>
+<td>pe</td>
+<tr>
+<td>return_on_equity</td>
+<tr>
+<td>div_yield</td>
+<tr>
+<td>debt_equity</td>
+<tr>
+<td>price_book</td>
+<tr>
+<td>qtr_rev_growth</td>
+<tr>
+<td>qtr_eps_growth</td>
+</table>
+
+
+
+
+
+
+<font color="#cc3366">
+<h2>
+The Core Tables
+</h2>
+</font>
+
+<p>
+There are two core tables.
+<ul>
+<li>
+hp
+</li>
+<li>
+ks
+</li>
+</ul>
+
+The core tables contain the complete historical prices (hp) and
+fundamental data (ks) sometimes referred to as key statistics.
+<p>
+This is the core data of the system and the basis for all of the
+reports generated in the system and the trading algorithms based on
+both technical and fundamental data.
+<p>
+
+<h5>
+Hp, Historical Prices -- Technical Data
+</h5>
+
+<table border="1">
+
+<tr>
+<th>hp</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>date</td>
+<tr>
+<td>open</td>
+<tr>
+<td>high</td>
+<tr>
+<td>low</td>
+<tr>
+<td>close</td>
+<tr>
+<td>adjclose</td>
+<tr>
+<td>volume</td>
+
+</table>
+
+<p>
+<h5>
+Ks, Key Statistics -- Fundamental Data
+</h5>
+<p>
+<table border="1">
+
+<tr>
+<th>ks</th>
+</tr>
+
+<tr>
+<td>symbol</td>
+<tr>
+<td>marketcap</td>
+<tr>
+<td>enterprise_value</td>
+<tr>
+<td>trailing_pe</td>
+<tr>
+<td>forward_pe</td>
+<tr>
+<td>peg_ratio</td>
+<tr>
+<td>price_sales</td>
+<tr>
+<td>price_book</td>
+<tr>
+<td>enterprise_value/revenue</td>
+<tr>
+<td>enterprise_value/ebitda</td>
+<tr>
+<td>fiscal_year_ends</td>
+<tr>
+<td>most_recent_qtr</td>
+<tr>
+<td>profit_margin</td>
+<tr>
+<td>operating_margin</td>
+<tr>
+<td>return_on_assets</td>
+<tr>
+<td>return_on_equity</td>
+<tr>
+<td>revenue</td>
+<tr>
+<td>revenue/share</td>
+<tr>
+<td>qtr_revenue_growth</td>
+<tr>
+<td>gross_profit</td>
+<tr>
+<td>ebitda</td>
+<tr>
+<td>net_income</td>
+<tr>
+<td>eps</td>
+<tr>
+<td>qtr_earnings_growth</td>
+<tr>
+<td>cash</td>
+<tr>
+<td>cash/share</td>
+<tr>
+<td>debt</td>
+<tr>
+<td>debt_equity</td>
+<tr>
+<td>current_ratio</td>
+<tr>
+<td>book_value_share</td>
+<tr>
+<td>operating_cash_flow</td>
+<tr>
+<td>free_cash_flow</td>
+<tr>
+<td>beta</td>
+<tr>
+<td>52_week_change</td>
+<tr>
+<td>52_week_change_sp500</td>
+<tr>
+<td>52_week_high</td>
+<tr>
+<td>52_week_low</td>
+<tr>
+<td>50_day_moving_average</td>
+<tr>
+<td>200_day_moving_average</td>
+<tr>
+<td>avg_volume_3_month</td>
+<tr>
+<td>avg_volume_10_day</td>
+<tr>
+<td>shares_outstanding</td>
+<tr>
+<td>float</td>
+<tr>
+<td>percent_insiders</td>
+<tr>
+<td>percent_institutions</td>
+<tr>
+<td>shares_short</td>
+<tr>
+<td>short_ratio</td>
+<tr>
+<td>short_percent_of_float</td>
+<tr>
+<td>shares_short_prior_month</td>
+<tr>
+<td>dividend</td>
+<tr>
+<td>dividend_yield</td>
+<tr>
+<td>ex_dividend_date</td>
+<tr>
+<td>last_split_factor</td>
+<tr>
+<td>last_split_date</td>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+For more information about how the database schemas are used
+please feel free and contact us.
+</p>
+
+<font color="#cc3366">
+<h2>Appendix One: Zrato Database Table Names</h2>
+</font>
+
+
+
+<p>
+Sorted by name
+<p>
+<table border="1">
+
+<tr>
+<th>name</th>
+<th>type</th>
+</tr>
+
+<tr>
+<td>eps</td>
+<td>Reporting</td>
+<tr>
+<td>hp</td>
+<td>Core</td>
+<tr>
+<td>industry</td>
+<td>Industry Sector</td>
+<tr>
+<td>industryks</td>
+<td>Industry Sector</td>
+<tr>
+<td>ks</td>
+<td>Core</td>
+<tr>
+<td>ma</td>
+<td>Reporting</td>
+<tr>
+<td>portfolio</td>
+<td>Portfolio</td>
+<tr>
+<td>sector</td>
+<td>Industry Sector</td>
+<tr>
+<td>symbolname</td>
+<td>Symbol</td>
+<tr>
+<td>symbols</td>
+<td>Portfolio</td>
+</table>
+
+<p>
+Sorted by type
+<p>
+
+<table border="1">
+
+<tr>
+<th>name</th>
+<th>type</th>
+</tr>
+
+
+<tr>
+<td>hp</td>
+<td>Core</td>
+<tr>
+<td>ks</td>
+<td>Core</td>
+<tr>
+<td>industry</td>
+<td>Industry Sector</td>
+<tr>
+<td>industryks</td>
+<td>Industry Sector</td>
+<tr>
+<td>sector</td>
+<td>Industry Sector</td>
+<tr>
+<td>portfolio</td>
+<td>Portfolio</td>
+<tr>
+<td>symbols</td>
+<td>Portfolio</td>
+<tr>
+<td>eps</td>
+<td>Reporting</td>
+<tr>
+<td>ma</td>
+<td>Reporting</td>
+<tr>
+<td>symbolname</td>
+<td>Symbol</td>
+
+</table>
+
+<p>
+<ul>
+<li>
+Core (2)
+</li>
+<li>
+Industry Sector (3)
+</li>
+<li>
+Portfolio (2)
+</li>
+<li>
+Reporting (2)
+</li>
+<li>
+Symbol (1)
+</li>
+</ul>
+
+<p>

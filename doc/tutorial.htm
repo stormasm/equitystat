@@ -1,0 +1,178 @@
+
+
+<p>
+<table>
+<tr>
+<td>
+<a href=./index.htm>Doc Home</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+<a href=./installwindows.htm>Windows Install</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./quicktutorial.htm>Quick Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./tutorial.htm>Tutorial</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tr>
+<tr>
+<td>
+<a href=./database.htm>Database</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./itext.htm>iText Reports</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./javadoc/overview-summary.html>Java Api</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td>
+<a href=./license.htm>License</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+
+</table>
+</p>
+
+<h1>
+Zrato Tutorial
+</h1>
+
+<p>
+Last modified on Wednesday June 29, 2005
+</p>
+
+<p>
+Before running the programs in this tutorial be
+sure you have read the 
+<a href=./installwindows.htm>installation</a> document.
+Assuming Zrato is properly installed and the simple test
+at the end of the installation document has run successfully,
+then you are now ready to run the tutorial.
+</p>
+<p>
+It is also important to note that the data in the zrato database is only
+a sample for a particular industry group.  Depending on your trading
+strategies and scenario, the database has to be populated on a regular
+basis with up to date financial information.  Please contact us to
+find out what the best strategy is for your company for accessing
+fresh data. We provide consulting services on how to parse
+a data feed and store the information in the database.
+<p>
+Zrato can be broken down to 3 simple steps.
+<ul>
+<li>1. Populate the database</li>
+<li>2. Run your trading algorithms</li>
+<li>3. View the output or results</li>
+</ul>
+<p>
+In this tutorial, step 1 is already taken care of for you.  By
+installing the zrato database in your MySql server you have
+populated your database with a sample set of data.  In the future,
+you will need to populate your database with a specified set of
+companies that you are interested in following.  This set of companies
+can also be based on an index or an industry group or both.
+<p>
+For now, we will assume that your database is populated.
+<p>
+The next step is to run your trading algorithms.  We have
+designed a 200 day Moving Average calculation.  This algorithm calculates
+the average of the past 200 days of trading for each company in the
+database each day over the total period of time in the hp 
+(historical price) table.  It then looks at the 200 day moving average
+on a particular day along with the closing price on that day
+and determines if the price has crossed over the 200 day moving
+average.  If it has, it then logs the date 
+in the <b>ma</b> table
+in which the cross over
+occurred along with the direction in which it crossed the average.
+In a bullish scenario, the price crosses the 200 day moving average
+in an upward direction and so <b>up</b> is logged.  In a bearish
+scenario, the price on a particular day crosses the 200 day moving
+average in a downward direction and so <b>down</b> is logged.  If
+nothing happened on that day, in other words no crossing occurred
+then nothing is logged.  It is now time to run this algorithm and
+then review the ma table to see what your data looks like.
+
+<p>
+<h3>
+Tutorial Step One, calculate the moving averages and populate the ma table
+</h3>
+<p>
+<ul>
+<li>
+ant ma
+</li>
+</ul>
+</p>
+
+<p>
+The final step is to review the output of the results of running your
+trading algorithm.  Zrato does this by generating a report based on
+<a href="http://www.lowagie.com/itext">iText</a>
+a powerful open source Java reporting tool that has the ability to
+deliver rich content onto the screen via PDF.
+
+The reporting engine is now ready to generate out a PDF report.
+
+
+<h3>
+Tutorial Step Two, build the moving average report.
+</h3>
+<p>
+<ul>
+<li>
+ant gm
+</li>
+</ul>
+</p>
+
+The PDF report will end up located on your disk in the directory
+where you installed the Zrato product.  If you look
+in that directory, you should see
+the file <b>Matechg00.pdf</b>
+
+
+<p>
+Take a look at the <b>Matechg00.pdf</b> report and note how the
+companies whose 50 and 200 day Moving averages have UP directions
+have been in a bullish trading pattern for
+quite some time.  This means that on that particular day a bullish
+signal occurred, and the closing price crossed the 200 day moving
+average upward and its stayed above the moving average 
+delineating the fact that the underlying fundamentals of this
+company are improving thus driving the stock price higher and higher
+over time.  To confirm this, go to your favorite website with stock
+charts and look at several things.  First of all look at the charts
+of these companies. Note, that for the past
+year their stock has been going up, you can also plot the stock price
+versus the 200 day moving average on many popular financial web sites.
+<p>
+The initial aspects of the Tutorial have now been covered.
+We have completed all three core steps:
+<p>
+<ul>
+<li>1. Populate the database</li>
+<li>2. Run your trading algorithms</li>
+<li>3. View the output or results</li>
+</ul>
+
+<p>
+At this point in time, you are ready to start writing your own
+trading algorithms and viewing the output by generating reports.
+It is nice, however, to take a look at a couple of other reports
+and data to get more of a feel of what Zrato can do for you.
+<p>
+Before you do that, be sure you have reviewed the 
+<a href=./database.htm>Database</a>
+document.  This outlines the database schema and the information
+that is found in each database table.
+<p>
+We are going to generate tables based on two other data sets
+that come with the Zrato database.  
+<p>
+Reviewing the set of reports will give you some insight into
+the different industries in the technology sector. 
+

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.arcadian.persist">
+
+	<class name="Ks">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="symbol"/>
+		
+		<property name="marketcap"/>
+		<property name="enterprisevalue"/>
+		<property name="trailingpe"/>
+		<property name="forwardpe"/>
+		<property name="pegratio"/>
+		<property name="pricesales"/>
+		<property name="pricebook"/>
+		<property name="evrevenue"/>
+		<property name="evebitda"/>
+		
+		<property name="fiscalyearends"/>
+		<property name="mostrecentqtr"/>
+		
+		<property name="profitmargin"/>
+		<property name="operatingmargin"/>
+		<property name="returnonassets"/>
+		<property name="returnonequity"/>
+		
+		<property name="revenue"/>
+		<property name="revenueshare"/>
+		<property name="qtrrevenuegrowth"/>
+		<property name="grossprofit"/>
+		<property name="ebitda"/>
+		<property name="netincome"/>
+		<property name="eps"/>
+		<property name="qtrearningsgrowth"/>
+		
+		<property name="cash"/>
+		<property name="cashshare"/>
+		<property name="debt"/>
+		<property name="debtequity"/>
+		<property name="currentratio"/>
+		<property name="bookvalueshare"/>
+		
+		<property name="operationscashflow"/>
+		<property name="freecashflow"/>
+		
+		<property name="beta"/>
+		<property name="x52weekchange"/>
+		<property name="x52weekchangesp500"/>
+		<property name="x52weekhigh"/>
+		<property name="x52weeklow"/>
+		<property name="x50dayma"/>
+		<property name="x200dayma"/>
+		
+		<property name="avgvol3month"/>
+		<property name="avgvol10day"/>
+		<property name="sharesoutstanding"/>
+		<property name="xfloat"/>
+		<property name="percentinsiders"/>
+		<property name="percentinstitutions"/>
+		<property name="shareshort"/>
+		<property name="shortratio"/>
+		<property name="shortpercentoffloat"/>
+		<property name="shareshortpriormonth"/>
+		
+		<property name="dividend"/>
+		<property name="dividendyield"/>
+		<property name="dividenddate"/>
+		<property name="exdividenddate"/>
+		<property name="lastsplitfactor"/>
+		<property name="lastsplitdate"/>
+	</class>
+		
+</hibernate-mapping>

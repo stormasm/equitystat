@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.arcadian.persist">
+
+	<class name="Eps">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="symbol"/>
+		
+		<property name="trailingpe"/>
+		<property name="eps"/>
+		<property name="price"/>
+		
+		<property name="forwardpe"/>
+		<property name="futureeps"/>
+		<property name="futureprice"/>
+		
+		<property name="pctincrease"/>
+	</class>
+</hibernate-mapping>
